@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++17 `sdl2-config --cflags`
+CXXFLAGS = -Wall -std=c++23 `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs`
 
 SRC = src/main.cpp
