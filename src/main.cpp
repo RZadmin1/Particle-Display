@@ -10,14 +10,17 @@ using namespace std;
 
 int main()
 {
+    // VARIABLES ===============================
     const int WIN_W = 800;  // Window WIDTH
     const int WIN_H = 600;  // Window HEIGHT
 
+    // INITIALIZE SDL ==========================
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         cerr << "SDL initialization failed." << endl;
         return 1;  // Error getting SDL.
     }
 
+    // CREATE WINDOW ===========================
     SDL_Window *window = SDL_CreateWindow(
             "Particle Fire Explosion", SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED, WIN_W, WIN_H, SDL_WINDOW_SHOWN);
@@ -28,7 +31,11 @@ int main()
         return 2;  // Error creating an SDL window.
     }
 
+    // SDL RENDERER ============================
+    // ...
 
+
+    // MAIN LOOP ===============================
     bool quit = false;
     SDL_Event event;
 
@@ -42,6 +49,8 @@ int main()
         }
     }
 
+
+    // CLOSING =================================
     cout << "Closing window ..." << endl;
     SDL_DestroyWindow(window);
     
