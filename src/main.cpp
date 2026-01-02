@@ -32,7 +32,34 @@ int main()
     }
 
     // SDL RENDERER ============================
-    // ...
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+    SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+            SDL_TEXTUREACCESS_STATIC, WIN_W, WIN_H);
+    
+    if (renderer == NULL) {
+        cerr << "Could not create renderer." << endl;
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 3;
+    }
+    if (texture == NULL) {
+        cout << "Could not create texture." << endl;
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        return 4;
+    }
+
+
+    // PIXEL DRAWING ===========================
+    Uint32 *buffer = new Uint32[WIN_W*WIN_H];  // Ideally check this with exception handling
+
+    memset(buffer, 0xFF, WIN_W*WIN_H*sizeof(Uint32));
+
+    SDL_UpdateTexture(texture, NULL, buffer, WIN_W*sizeof(Uint32));
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderPresent(renderer);
 
 
     // MAIN LOOP ===============================
@@ -51,6 +78,10 @@ int main()
 
 
     // CLOSING =================================
+    delete [] buffer;
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyTexture(texture);
+
     cout << "Closing window ..." << endl;
     SDL_DestroyWindow(window);
     
