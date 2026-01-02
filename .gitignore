@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# VS Code System-Specific
+.vscode/*
+
 # Compiled Object files
 build/*
 *.slo

@@ -53,8 +53,12 @@ int main()
 
     // PIXEL DRAWING ===========================
     Uint32 *buffer = new Uint32[WIN_W*WIN_H];  // Ideally check this with exception handling
-
-    memset(buffer, 0xFF, WIN_W*WIN_H*sizeof(Uint32));
+    
+    memset(buffer, 0, WIN_W*WIN_H*sizeof(Uint32));
+    
+    for (int i = 0; i < WIN_W*WIN_H; i++) {
+        buffer[i] = 0x00ff80ff;
+    }
 
     SDL_UpdateTexture(texture, NULL, buffer, WIN_W*sizeof(Uint32));
     SDL_RenderClear(renderer);
