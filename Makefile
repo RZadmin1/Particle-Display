@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++23 `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs`
 
-SRC = src/main.cpp
+SRC = src/*
 OUT = build/app
 
 all:
