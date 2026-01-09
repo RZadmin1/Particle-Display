@@ -19,17 +19,14 @@ int main()
         cout << "Error initializing SDL." << endl;
     }
 
-    // MAIN LOOP ===============================
-    bool quit = false;
-    SDL_Event event;
-
-    while (!quit) {
+    // MAIN LOOP =============================== 
+    while (true) {
         // Update particles
         // Draw particles
         // Check for messages/events
 
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) { quit = true; }
+        if (Screen.processEvents() == false) {
+            break;
         }
     }
 
