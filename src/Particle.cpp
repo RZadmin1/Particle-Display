@@ -15,4 +15,11 @@ Particle::~Particle() {
     // TODO: Auto-generated destructor stub
 }
 
+void Particle::udpate() {
+    const double speed = 0.01;
+
+    m_x += speed;
+    m_y += speed;
+}
+
 } /* namespace particlesim */

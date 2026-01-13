@@ -18,6 +18,7 @@ struct Particle {
 public:
     Particle();
     virtual ~Particle();
+    void udpate();
 };
 
 } /* namespace particlesim */
