@@ -101,4 +101,9 @@ void Screen::close() {
     SDL_Quit();  // Close SDL connection
 }
 
+
+void Screen::clear() {
+    memset(m_buffer, 0, WIN_W*WIN_H*sizeof(Uint32));
+}
+
 } /* namespace particlesim */
