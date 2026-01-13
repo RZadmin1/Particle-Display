@@ -37,14 +37,14 @@ int main()
         
 
         // Draw particles
-        int elapsed = SDL_GetTicks()/2;
+        int elapsed = SDL_GetTicks();
 
         screen.clear();
-        swarm.update();
+        swarm.update(elapsed);
 
-        unsigned char red = (unsigned char)((1 + sin(elapsed * 0.001)) * 128);
-        unsigned char green = (unsigned char)((1 + sin(elapsed * 0.002)) * 128);
-        unsigned char blue = (unsigned char)((1 + sin(elapsed * 0.003)) * 128);
+        unsigned char red = (unsigned char)((1 + sin(elapsed/2 * 0.001)) * 128);
+        unsigned char green = (unsigned char)((1 + sin(elapsed/2 * 0.002)) * 128);
+        unsigned char blue = (unsigned char)((1 + sin(elapsed/2 * 0.003)) * 128);
         
         const Particle * const pParticles = swarm.getParticles();
         for (int i = 0, n = Swarm::NPARTICLES; i < n; i++) {

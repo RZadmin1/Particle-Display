@@ -21,7 +21,7 @@ struct Particle {
 public:
     Particle();
     virtual ~Particle();
-    void udpate();
+    void udpate(int interval);
 };
 
 } /* namespace particlesim */
