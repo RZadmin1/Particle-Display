@@ -34,7 +34,7 @@ int main()
         
 
         // Draw particles
-        int elapsed = SDL_GetTicks();
+        int elapsed = SDL_GetTicks()/2;
 
         screen.clear();
         swarm.update();
