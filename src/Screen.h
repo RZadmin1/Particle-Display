@@ -6,7 +6,7 @@
 
 #include <SDL.h>
 
-namespace particles {
+namespace particlesim {
 
 class Screen {
 
@@ -30,6 +30,6 @@ public:
 
 };
 
-} /* namespace particles */
+} /* namespace particlesim */
 
 #endif /* SCREEN_H_ */

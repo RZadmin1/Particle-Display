@@ -2,7 +2,8 @@
 
 #include "Screen.h"
 
-namespace particles {
+
+namespace particlesim {
 
 Screen::Screen() : 
         m_window(NULL), m_renderer(NULL), m_texture(NULL), m_buffer(NULL) {
@@ -62,6 +63,9 @@ void Screen::update() {
 
 
 void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+    // Inefficient check; consider alternative check in real-world applications
+    if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H) { return; }
+    
     Uint32 color = 0;
 
     color += red;
@@ -97,4 +101,4 @@ void Screen::close() {
     SDL_Quit();  // Close SDL connection
 }
 
-} /* namespace particles */
+} /* namespace particlesim */

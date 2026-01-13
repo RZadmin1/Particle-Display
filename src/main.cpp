@@ -2,23 +2,31 @@
 // main.cpp
 
 #include <iostream>
+#include <stdlib.h>
 #include <SDL.h>
 #include <math.h>
 
 #include "Screen.h"
+#include "Swarm.h"
 
 using namespace std;
-using namespace particles;
+using namespace particlesim;
 
 
 
 int main()
 {
+    srand(time(NULL));
+
     Screen screen;
 
     if (screen.init() == false) {
         cout << "Error initializing SDL." << endl;
     }
+
+    // INITIALIZE SWARM ========================
+    Swarm swarm;
+
 
     // MAIN LOOP =============================== 
     while (true) {
@@ -30,13 +38,17 @@ int main()
         unsigned char red = (unsigned char)((1 + sin(elapsed * 0.001)) * 128);
         unsigned char green = (unsigned char)((1 + sin(elapsed * 0.002)) * 128);
         unsigned char blue = (unsigned char)((1 + sin(elapsed * 0.003)) * 128);
-
-        for (int y = 0; y < Screen::WIN_H; y++) {
-            for (int x = 0; x < Screen::WIN_W; x++) {
-                screen.setPixel(x, y, red, green, blue);
-            }
-        }
         
+        const Particle * const pParticles = swarm.getParticles();
+        for (int i = 0, n = Swarm::NPARTICLES; i < n; i++) {
+            Particle particle = pParticles[i]; // Pointer to a particle
+
+            int x = (particle.m_x + 1) * Screen::WIN_W/2;
+            int y = (particle.m_y + 1) * Screen::WIN_H/2;
+
+            screen.setPixel(x, y, red, green, blue);
+        }
+
         // Draw the screen
         screen.update();
 
