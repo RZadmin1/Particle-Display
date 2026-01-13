@@ -24,6 +24,9 @@ int main()
         cout << "Error initializing SDL." << endl;
     }
 
+    int centerX = Screen::WIN_W/2;
+    int centerY = Screen::WIN_H/2;
+
     // INITIALIZE SWARM ========================
     Swarm swarm;
 
@@ -47,8 +50,9 @@ int main()
         for (int i = 0, n = Swarm::NPARTICLES; i < n; i++) {
             Particle particle = pParticles[i]; // Pointer to a particle
 
-            int x = (particle.m_x + 1) * Screen::WIN_W/2;
-            int y = (particle.m_y + 1) * Screen::WIN_H/2;
+            
+            int x = (particle.m_x + 1) * centerX;
+            int y = (particle.m_y * centerX) + centerY;
 
             screen.setPixel(x, y, red, green, blue);
         }
