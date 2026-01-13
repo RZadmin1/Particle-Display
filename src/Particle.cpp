@@ -21,6 +21,13 @@ Particle::~Particle() {
 void Particle::udpate() {
     m_x += m_xspeed;
     m_y += m_yspeed;
+
+    if (m_x <= -1.0 || m_x >= 1.0) {
+        m_xspeed = -m_xspeed;
+    }
+    if (m_y <= -1.0 || m_y >= 1.0) {
+        m_yspeed = -m_yspeed;
+    }
 }
 
 } /* namespace particlesim */
