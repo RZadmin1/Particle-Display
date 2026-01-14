@@ -112,11 +112,11 @@ void Screen::boxBlur() {
                         Uint32 color = m_buffer2[currentY*WIN_W + currentX];
 
                         Uint8 red = color >> 24;
-                        Uint8 green = (color >> 16) & 0x000000FF;
-                        Uint8 blue = (color >> 8) & 0x000000FF;
+                        Uint8 green = color >> 16;
+                        Uint8 blue = color >> 8;
 
                         redTotal += red;
-                        greenTotal = green;
+                        greenTotal += green;
                         blueTotal += blue;
                     }
                 }

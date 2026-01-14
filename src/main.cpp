@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <SDL.h>
+#include <bitset>
 #include <math.h>
 
 #include "Screen.h"
@@ -41,10 +42,10 @@ int main()
 
         swarm.update(elapsed);
 
-        unsigned char red = (unsigned char)((1 + sin(elapsed/2 * 0.001)) * 128);
-        unsigned char green = (unsigned char)((1 + sin(elapsed/2 * 0.002)) * 128);
-        unsigned char blue = (unsigned char)((1 + sin(elapsed/2 * 0.003)) * 128);
-        
+        Uint8 red = (Uint8)((1 + cos(elapsed/5 * 0.001)) * 128);
+        Uint8 green = (Uint8)((1 + sin(elapsed/5 * 0.002)) * 128);
+        Uint8 blue = (Uint8)((1 + sin(elapsed/5 * 0.003)) * 128);
+
         const Particle * const pParticles = swarm.getParticles();
         for (int i = 0, n = Swarm::NPARTICLES; i < n; i++) {
             Particle particle = pParticles[i]; // Pointer to a particle
@@ -57,8 +58,10 @@ int main()
 
         screen.boxBlur();
 
+
         // Draw the screen
         screen.update();
+
 
         // Check for messages/events
         if (screen.processEvents() == false) { break; }
