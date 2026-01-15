@@ -10,7 +10,7 @@ namespace particlesim {
 class Swarm {
 
 public:
-    const static int NPARTICLES = 5000;
+    const static int NPARTICLES = 3500;
 
 private:
     Particle *m_pParticles;

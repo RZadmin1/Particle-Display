@@ -22,6 +22,7 @@ int main()
 
     Screen screen;
     int algo = 1; // Regular Box Blur by default
+    bool measurePerformance = false;
 
     // CHOOSE ALGORITHM ========================
     string input;
@@ -48,6 +49,12 @@ int main()
         } else {
             cout << "Invalid input. Please try again." << endl;
         }
+    }
+
+    cout << "Use Performance Counter? [y/n]: " << endl;
+    cin >> input;
+    if (input[0] == 'y' || input[0] == 'Y') {
+        measurePerformance = true;
     }
 
 
@@ -97,9 +104,12 @@ int main()
         // Draw the screen
         screen.update();
 
-        Uint64 end = SDL_GetPerformanceCounter();
-        double deltaTime = (double)(end - start) / (double)SDL_GetPerformanceFrequency();
-        cout << "FPS: " << 1.0 / deltaTime << endl;
+        if (measurePerformance) {
+            Uint64 end = SDL_GetPerformanceCounter();
+            double deltaTime = (double)(end - start) / (double)SDL_GetPerformanceFrequency();
+            cout << "FPS: " << 1.0 / deltaTime << endl;
+        }
+        
 
 
         // Check for messages/events

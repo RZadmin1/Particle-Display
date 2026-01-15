@@ -143,7 +143,7 @@ void Screen::fastBoxBlur() {
             int redTotal = 0;
             int greenTotal = 0;
             int blueTotal = 0;
-            for (int col = -1; col <= 1; col++) {
+            for (int col = -1; col < 2; col++) {
                 int currentX = x + col;
                 int currentY = y;
                 if (currentX >= 0 && currentX < WIN_W) {
@@ -159,7 +159,7 @@ void Screen::fastBoxBlur() {
                 }
             }
 
-            for (int row = -1; row <= 1; row++) {
+            for (int row = -1; row < 2; row++) {
                 int currentX = x;
                 int currentY = y + row;
                 if (currentY >= 0 && currentY < WIN_H) {
