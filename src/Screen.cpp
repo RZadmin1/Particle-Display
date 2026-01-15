@@ -132,6 +132,60 @@ void Screen::boxBlur() {
 }
 
 
+void Screen::fastBoxBlur() {
+    // Swap the buffers so pixel is in m_buffer2 and we are drawing to m_buffer1
+    Uint32 *temp = m_buffer1;
+    m_buffer1 = m_buffer2;
+    m_buffer2 = temp;
+
+    for (int y = 0, n = WIN_H; y < n; y++) {
+        for (int x = 0, m = WIN_W; x < m; x++) {
+            int redTotal = 0;
+            int greenTotal = 0;
+            int blueTotal = 0;
+            for (int col = -1; col <= 1; col++) {
+                int currentX = x + col;
+                int currentY = y;
+                if (currentX >= 0 && currentX < WIN_W) {
+                    Uint32 color = m_buffer2[currentY*WIN_W + currentX];
+
+                    Uint8 red = color >> 24;
+                    Uint8 green = color >> 16;
+                    Uint8 blue = color >> 8;
+
+                    redTotal += red;
+                    greenTotal += green;
+                    blueTotal += blue;
+                }
+            }
+
+            for (int row = -1; row <= 1; row++) {
+                int currentX = x;
+                int currentY = y + row;
+                if (currentY >= 0 && currentY < WIN_H) {
+                    Uint32 color = m_buffer2[currentY*WIN_W + currentX];
+
+                    Uint8 red = color >> 24;
+                    Uint8 green = color >> 16;
+                    Uint8 blue = color >> 8;
+
+                    redTotal += red;
+                    greenTotal += green;
+                    blueTotal += blue;
+                }
+            }
+
+            const Uint8 divider = 6;
+            Uint8 red = redTotal/divider;
+            Uint8 green = greenTotal/divider;
+            Uint8 blue = blueTotal/divider;
+
+            setPixel(x, y, red, green, blue);
+        }
+    }
+}
+
+
 void Screen::close() {
     // CLOSING =================================
     delete [] m_buffer1;
